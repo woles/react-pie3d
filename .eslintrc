@@ -1,0 +1,32 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "no-mixed-operators": 0,
+    "func-names": 0,
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "comma-dangle": 0,
+    "no-confusing-arrow": 0,
+    "brace-style": [ 1, "1tbs", { "allowSingleLine": true } ],
+   	//always force braces around arrow function body
+    "arrow-body-style": [2, "as-needed"],
+    "arrow-parens": ["error", "as-needed"],
+    // allow assign values to props of parameters
+    "no-param-reassign": [2, {"props": false}],
+    "object-shorthand": ["error", "methods"],
+    "react/jsx-indent-props": 0,
+    "react/jsx-space-before-closing": [2, "never"],
+    // enforce consistent indentation style. The default style is 4 spaces
+    "react/jsx-indent": [2, 2],
+    // Ensure correct position of the first property.
+    "react/jsx-first-prop-new-line": [2, "never"],
+    // don't force break chaining into new lines because this this.props.actions.authLoginUser() is valid
+    "newline-per-chained-call": 0,
+    // don't check for default exports as current version does not support module.exports = ... as default
+    "import/default": 0,
+    // don't prefer prefer-stateless-function
+    "react/prefer-stateless-function": 0,
+    // allow jsx in .js files
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  }
+}
