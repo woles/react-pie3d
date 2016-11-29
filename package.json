@@ -1,7 +1,7 @@
 {
   "name": "react-pie3d",
   "version": "0.0.3",
-  "description": "React 3d pie/donat",
+  "description": "React 3d pie/donut",
   "main": "lib/react-pie3d.js",
   "scripts": {
     "build": "webpack --env.mode=build",
@@ -64,7 +64,7 @@
     "react-chart",
     "pie",
     "pie3d",
-    "donat"
+    "donut"
   ],
   "author": "woles",
   "license": "MIT",

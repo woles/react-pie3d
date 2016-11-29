@@ -1,6 +1,6 @@
-# React 3d pie/donat chart
+# React 3d pie/donut chart
 
-This library is for drawing nice looking pie/donat charts with d3js.
+This library is for drawing nice looking pie/donut charts with d3js.
 
 Here is the link to the [demo](http://react-pie3d.pev.pl)
 
