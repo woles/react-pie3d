@@ -1,8 +1,8 @@
 {
   "name": "react-pie3d",
-  "version": "0.0.1",
-  "description": "Boilerplate for npm package",
-  "main": "lib/test.js",
+  "version": "0.0.3",
+  "description": "React 3d pie/donat",
+  "main": "lib/react-pie3d.js",
   "scripts": {
     "build": "webpack --env.mode=build",
     "dev": "webpack-dev-server --content-base example --inline --host 0.0.0.0 --config webpack.config.js --env.mode=dev",
@@ -59,9 +59,9 @@
   },
   "keywords": [
     "chart",
-    "d3",
-    "animation",
     "3d",
+    "react",
+    "react-chart",
     "pie",
     "pie3d",
     "donat"

@@ -67,7 +67,7 @@ export default class Pie3D extends React.Component {
     let ir = this.ir;
     let rx = this.rx;
     let angle = this.angle;
-    let h = 0;
+    let h = this.h;
     const config = this.props.config;
     if (config) {
       h = config.h >= 0 ? config.h : this.h;
