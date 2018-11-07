@@ -71,7 +71,7 @@ var data = [
 |`h`            | `40`     |`Number` (min: 0) Height of walls in px               |
 |`angle`          | `40`      |`Number` (min: 0, max: 90) Angle of chart in degrees, when 90 the chart become normal flat pie chart |
 |`size`             | `100`     |`Number` (min: 0, max: 100) size in inner html tag in % |
-|`onSliceSelect`  | `null`      | `Function` on slice click, d => {} |
+|`onSliceClick`  | `null`      | `Function` on slice click, d => {} |
 
 *d => {}
 ```js
