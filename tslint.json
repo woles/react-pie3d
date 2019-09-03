@@ -1,0 +1,8 @@
+{
+    "extends": ["tslint:latest", "tslint-react"],
+    "rules": {
+      "jsx-wrap-multiline": false,
+      "quotemark": [true, "single", "jsx-double"],
+      "semicolon": [true, "never"]
+    }
+  }
