@@ -4,6 +4,8 @@ SVG 3D pie / donut chart with tooltips and typescript
 
 ## Demo
 
+[https://woles.github.io/react-pie3d-demo/](https://woles.github.io/react-pie3d-demo/)
+
 ## Requirements
 
     react >= 16.8.0
