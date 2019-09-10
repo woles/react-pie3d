@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/react-pie3d-demo/precache-manifest.c166b21522bab74cb3d24d66a229b7da.js"
+  "/react-pie3d-demo/precache-manifest.1cba88768e1b8f66fd3ade1678142c73.js"
 );
 
 self.addEventListener('message', (event) => {

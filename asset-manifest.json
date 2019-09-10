@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/react-pie3d-demo/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/react-pie3d-demo/static/js/main.cecd29dd.chunk.js",
-    "main.js.map": "/react-pie3d-demo/static/js/main.cecd29dd.chunk.js.map",
-    "runtime~main.js": "/react-pie3d-demo/static/js/runtime~main.3cdb54c6.js",
-    "runtime~main.js.map": "/react-pie3d-demo/static/js/runtime~main.3cdb54c6.js.map",
-    "static/js/2.bb68d27a.chunk.js": "/react-pie3d-demo/static/js/2.bb68d27a.chunk.js",
-    "static/js/2.bb68d27a.chunk.js.map": "/react-pie3d-demo/static/js/2.bb68d27a.chunk.js.map",
+    "main.js": "/react-pie3d-demo/static/js/main.933f7ba0.chunk.js",
+    "main.js.map": "/react-pie3d-demo/static/js/main.933f7ba0.chunk.js.map",
+    "runtime~main.js": "/react-pie3d-demo/static/js/runtime~main.94ed3b3a.js",
+    "runtime~main.js.map": "/react-pie3d-demo/static/js/runtime~main.94ed3b3a.js.map",
+    "static/js/2.cdb06938.chunk.js": "/react-pie3d-demo/static/js/2.cdb06938.chunk.js",
+    "static/js/2.cdb06938.chunk.js.map": "/react-pie3d-demo/static/js/2.cdb06938.chunk.js.map",
     "index.html": "/react-pie3d-demo/index.html",
-    "precache-manifest.c166b21522bab74cb3d24d66a229b7da.js": "/react-pie3d-demo/precache-manifest.c166b21522bab74cb3d24d66a229b7da.js",
+    "precache-manifest.1cba88768e1b8f66fd3ade1678142c73.js": "/react-pie3d-demo/precache-manifest.1cba88768e1b8f66fd3ade1678142c73.js",
     "service-worker.js": "/react-pie3d-demo/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/react-pie3d-demo/static/css/main.5ecd60fb.chunk.css.map"
   }
