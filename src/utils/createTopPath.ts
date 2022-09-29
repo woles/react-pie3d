@@ -12,6 +12,7 @@ export const createTopPath = (data: PieData, rx: number, ry: number, ir: number)
   const ex = rx * Math.cos(endAngle)
   const ey = ry * Math.sin(endAngle)
 
-  return `M ${sx} ${sy} A ${rx} ${ry} 0 ${endAngle - startAngle > Math.PI ? 1 : 0} 1 ${ex} ${ey} L ${ir * ex} ${ir * ey} A ` +
-    `${ir * rx} ${ir * ry} 0 ${endAngle - startAngle > Math.PI ? 1 : 0} 0 ${ir * sx} ${ir * sy} z`
+  return `M ${sx} ${sy} A ${rx} ${ry} 0 ${endAngle - startAngle > Math.PI ? 1 : 0} 1` +
+    ` ${ex} ${ey} L ${ir * ex} ${ir * ey} A ${ir * rx} ${ir * ry}` +
+    ` 0 ${endAngle - startAngle > Math.PI ? 1 : 0} 0 ${ir * sx} ${ir * sy} z`
 }

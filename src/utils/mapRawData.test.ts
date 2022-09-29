@@ -9,7 +9,7 @@ test('MapData results', () => {
       moved: false,
       percentageValue: 0.16666666666666666,
       startAngle: 0,
-      value: 10,
+      value: 10
     },
     {
       color: 'mediumvioletred',
@@ -18,7 +18,7 @@ test('MapData results', () => {
       moved: false,
       percentageValue: 0.3333333333333333,
       startAngle: 1.0471975511965976,
-      value: 20,
+      value: 20
     },
     {
       color: 'mediumpurple',
@@ -27,7 +27,7 @@ test('MapData results', () => {
       moved: false,
       percentageValue: 0.5,
       startAngle: 3.141592653589793,
-      value: 30,
-    },
+      value: 30
+    }
   ])
 })

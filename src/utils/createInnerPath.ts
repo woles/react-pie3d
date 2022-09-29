@@ -9,6 +9,6 @@ export const createInnerPath = (data: PieData, rx: number, ry: number, height: n
   const ex = ir * rx * Math.cos(endAngle)
   const ey = ir * ry * Math.sin(endAngle)
 
-  return `M ${sx} ${sy} A ${ir * rx} ${ir * ry} 0 0 1 ${ex} ${ey} L ${ex} ${height + ey} A ${ir * rx} ${ir * ry} `
-    + `0 0 0 ${sx} ${height + sy} z`
+  return `M ${sx} ${sy} A ${ir * rx} ${ir * ry} 0 0 1 ${ex} ${ey} L ${ex} ${height + ey} A ${ir * rx} ${ir * ry} ` +
+    `0 0 0 ${sx} ${height + sy} z`
 }

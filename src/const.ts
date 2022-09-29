@@ -12,7 +12,7 @@ export const DEFAULT_CONFIG: PieConfig = {
   strokeWidth: 1,
   tooltipShowName: true,
   tooltipShowPercentage: true,
-  tooltipShowValue: true,
+  tooltipShowValue: true
 }
 
 export const DEFAULT_COLORS = [
@@ -23,5 +23,5 @@ export const DEFAULT_COLORS = [
   'firebrick',
   'chartreuse',
   'dodgerblue',
-  'tomato',
+  'tomato'
 ]

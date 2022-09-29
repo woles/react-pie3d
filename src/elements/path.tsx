@@ -7,30 +7,30 @@ import {
   createInnerPath,
   createOuterPath,
   createStartWallPath,
-  createTopPath,
+  createTopPath
 } from '../utils'
 
-type PathProps = {
-  data: PieData,
+type Props = {
+  data: PieData
   pathVariables: {
-    height: number,
-    ir: number,
-    moveDistance: number,
-    moveElement: (startAngle: number) => void,
-    showTooltips: boolean,
-    stroke: string,
-    strokeWidth: number,
-    onClick: (index: number) => void,
-    rx: number,
-    ry: number,
-    tooltipShowName: boolean,
-    tooltipShowPercentage: boolean,
-    tooltipShowValue: boolean,
+    height: number
+    ir: number
+    moveDistance: number
+    moveElement: (startAngle: number) => void
+    showTooltips: boolean
+    stroke: string
+    strokeWidth: number
+    onClick: (index: number) => void
+    rx: number
+    ry: number
+    tooltipShowName: boolean
+    tooltipShowPercentage: boolean
+    tooltipShowValue: boolean
   }
-  type: PathType,
+  type: PathType
 }
 
-export const Path: React.SFC<PathProps> =
+export const Path =
   ({
     data,
     pathVariables: {
@@ -46,53 +46,54 @@ export const Path: React.SFC<PathProps> =
       strokeWidth,
       tooltipShowName,
       tooltipShowPercentage,
-      tooltipShowValue,
+      tooltipShowValue
     },
-    type,
-  }) => {
-
-  const handleOnClick = () => {
-    moveElement(data.startAngle)
-    onClick(data.index)
-  }
-
-  const createPath = () => {
-    switch (type) {
-      case PathType.End:
-        return createEndWallPath(data, rx, ry, height, ir)
-      case PathType.Inner:
-        return createInnerPath(data, rx, ry, height, ir)
-      case PathType.Outer:
-        return createOuterPath(data, rx, ry, height)
-      case PathType.Start:
-        return createStartWallPath(data, rx, ry, height, ir)
-      case PathType.Top:
-        return createTopPath(data, rx, ry, ir)
-      default:
-        throw Error('No such path type')
+    type
+  }: Props): JSX.Element => {
+    const handleOnClick = (): void => {
+      moveElement(data.startAngle)
+      onClick(data.index)
     }
-  }
 
-  const styles = { fill: data.color, cursor: 'pointer' }
-  const label = data.label ? data.label : ''
+    const createPath = (): string => {
+      switch (type) {
+        case PathType.End:
+          return createEndWallPath(data, rx, ry, height, ir)
+        case PathType.Inner:
+          return createInnerPath(data, rx, ry, height, ir)
+        case PathType.Outer:
+          return createOuterPath(data, rx, ry, height)
+        case PathType.Start:
+          return createStartWallPath(data, rx, ry, height, ir)
+        case PathType.Top:
+          return createTopPath(data, rx, ry, ir)
+        default:
+          throw Error('No such path type')
+      }
+    }
 
-  const tooltipName = tooltipShowName && label ? `${label} ` : ''
+    const styles = { fill: data.color, cursor: 'pointer' }
+    const label = data.label !== undefined ? data.label : ''
 
-  const tooltipText = `${tooltipName}${tooltipShowValue ? data.value : ''} ` +
+    const tooltipName = tooltipShowName && label !== undefined ? `${label} ` : ''
+
+    const tooltipText = `${tooltipName}${tooltipShowValue ? data.value : ''} ` +
     `${tooltipShowPercentage ? (data.percentageValue * 100).toFixed(2) + '%' : ''}`
 
-  const transformation = data.moved ? `translate(${calculateNewPosition(data, rx, ry, moveDistance)})` : 'translate(0,0)'
+    const transformation = data.moved
+      ? `translate(${calculateNewPosition(data, rx, ry, moveDistance).join(',')})`
+      : 'translate(0,0)'
 
-  return (
-    <path
-      d={createPath()}
-      onClick={handleOnClick}
-      stroke={stroke}
-      strokeWidth={strokeWidth}
-      style={styles}
-      transform={transformation}
-    >
-      {showTooltips && <title className="chart-tooltip">{tooltipText}</title>}
-    </path>
-  )
-}
+    return (
+      <path
+        d={createPath()}
+        onClick={handleOnClick}
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        style={styles}
+        transform={transformation}
+      >
+        {showTooltips && <title className="chart-tooltip">{tooltipText}</title>}
+      </path>
+    )
+  }

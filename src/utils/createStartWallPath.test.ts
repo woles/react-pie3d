@@ -7,7 +7,7 @@ const data = {
   moved: false,
   percentageValue: 0.2,
   startAngle: 0,
-  value: 30,
+  value: 30
 }
 
 test('Create start wall svg path', () => {

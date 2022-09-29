@@ -1,7 +1,6 @@
 import { PieData } from '../types'
 
 export const createOuterPath = (data: PieData, rx: number, ry: number, hight: number): string => {
-
   const startAngle = (data.startAngle > Math.PI ? Math.PI : data.startAngle)
   const endAngle = (data.endAngle > Math.PI ? Math.PI : data.endAngle)
   const sx = rx * Math.cos(startAngle)

@@ -1,32 +1,32 @@
 {
-  "name": "react-pie3d-demo",
-  "version": "1.0.0",
+  "name": "example",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.4.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-pie3d": "../../react-pie3d/"
-  },
-  "devDependencies": {
-    "@types/jest": "24.0.18",
-    "@types/node": "12.7.3",
-    "@types/react": "16.9.2",
-    "@types/react-dom": "16.9.0",
-    "gh-pages": "^2.1.1",
-    "react-scripts": "3.1.1",
-    "typescript": "3.6.2"
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.62",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "18.0.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-pie3d": "file:..",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.8.4",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -39,6 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "homepage": "https://woles.github.io/react-pie3d-demo"
+  }
 }

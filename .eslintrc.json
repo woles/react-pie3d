@@ -1,0 +1,40 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard-with-typescript"
+    ],
+    "overrides": [
+        
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": [
+        "react",
+        "jest-react"
+    ],
+    "rules": {
+        "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+        "eol-last": ["error", "always"],
+        "max-len": ["error", { "code": 120 }],
+        "no-console": "error",
+        "no-multi-spaces": "error",
+        "no-multiple-empty-lines": ["error", { "max": 1 }],
+        "no-trailing-spaces": "error",
+        "semi": ["error", "never"],
+        "sort-imports": ["error", {
+          "ignoreCase": false,
+          "ignoreDeclarationSort": false,
+          "ignoreMemberSort": false,
+          "memberSyntaxSortOrder": ["none", "single", "all", "multiple"],
+          "allowSeparatedGroups": true
+        }],
+        "space-before-blocks": "error"
+      }
+}

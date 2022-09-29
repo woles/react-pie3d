@@ -3,15 +3,15 @@ import { mapData } from './mapData'
 const data = [{
   color: 'blue',
   label: 'test-20',
-  value: 20,
+  value: 20
 }, {
   color: 'red',
   label: 'test-30',
-  value: 30,
+  value: 30
 }, {
   color: 'green',
   label: 'test-50',
-  value: 50,
+  value: 50
 }]
 
 test('MapData results', () => {
@@ -24,7 +24,7 @@ test('MapData results', () => {
       moved: false,
       percentageValue: 0.2,
       startAngle: 0,
-      value: 20,
+      value: 20
     },
     {
       color: 'red',
@@ -34,7 +34,7 @@ test('MapData results', () => {
       moved: false,
       percentageValue: 0.3,
       startAngle: 1.2566370614359172,
-      value: 30,
+      value: 30
     },
     {
       color: 'green',
@@ -44,7 +44,7 @@ test('MapData results', () => {
       moved: false,
       percentageValue: 0.5,
       startAngle: 3.141592653589793,
-      value: 50,
-    },
+      value: 50
+    }
   ])
 })

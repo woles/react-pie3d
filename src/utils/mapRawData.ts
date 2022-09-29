@@ -2,7 +2,6 @@ import { DEFAULT_COLORS } from '../const'
 import { MappedData } from '../types'
 
 export const mapRawData = (data: number[]): MappedData => {
-
   const sum = data.reduce((accumulator, value) => accumulator + value, 0)
 
   return data.reduce((accumulator: MappedData, value, index) => {
@@ -13,13 +12,13 @@ export const mapRawData = (data: number[]): MappedData => {
       ...accumulator,
       {
         color: DEFAULT_COLORS[index % DEFAULT_COLORS.length],
-        endAngle: previousValue ? previousValue.endAngle + angle : angle,
+        endAngle: previousValue !== undefined ? previousValue.endAngle + angle : angle,
         index,
         moved: false,
         percentageValue: value / sum,
-        startAngle: previousValue ? previousValue.endAngle : 0,
-        value,
-      },
+        startAngle: previousValue !== undefined ? previousValue.endAngle : 0,
+        value
+      }
     ]
   }, [])
 }
