@@ -79,6 +79,16 @@ export const checkIsDataArrayOfNumbers = (data: unknown[]): boolean => {
   return true
 }
 
+export const checkIsUserData = (data: any): boolean => {
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].value === undefined) {
+      return false
+    }
+  }
+
+  return true
+}
+
 export const mapRowData = (data: number[]): UserData[] => data.map((item) => ({ value: item }))
 
 export const mapData = (data: UserData[]): PieSlices => {

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 import { Pie3D } from 'react-pie3d'
 
 function App() {
@@ -9,4 +9,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

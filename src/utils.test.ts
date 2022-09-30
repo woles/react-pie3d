@@ -1,6 +1,7 @@
 import { pi } from './const'
 import {
   checkIsDataArrayOfNumbers,
+  checkIsUserData,
   createEndWallPath,
   createInnerPath,
   createOuterPath,
@@ -11,11 +12,39 @@ import {
   mapRowData
 } from './utils'
 
+describe(checkIsDataArrayOfNumbers, () => {
+  it('should return true if its array of numbers', () => {
+    const result = checkIsDataArrayOfNumbers([1, 10, 50, 40])
+
+    expect(result).toEqual(true)
+  })
+
+  it('should return false if its array of objects', () => {
+    const result = checkIsDataArrayOfNumbers([{ value: 1 }, { value: 2 }])
+
+    expect(result).toEqual(false)
+  })
+})
+
+describe(checkIsUserData, () => {
+  it('should return true if its array of UserData', () => {
+    const result = checkIsUserData([{ test: 1 }, { test: 2 }])
+
+    expect(result).toEqual(false)
+  })
+
+  it('should return false is not array of UserData', () => {
+    const result = checkIsUserData([{ value: 1 }, { value: 2 }])
+
+    expect(result).toEqual(true)
+  })
+})
+
 describe(createEndWallPath, () => {
   it('Creates end wall svg path', () => {
     const result = createEndWallPath(0, 120, 120, 40, 0.8)
 
-    expect(result).toBe('M 96 0 L 96 40 L 120 40 L 120 0 z')
+    expect(result).toEqual('M 96 0 L 96 40 L 120 40 L 120 0 z')
   })
 })
 
@@ -67,20 +96,6 @@ describe(getNewPosition, () => {
     const result = getNewPosition(0, pi / 2, 10, 50, 5)
 
     expect(result).toEqual([35.35533905932738, 176.77669529663686])
-  })
-})
-
-describe(checkIsDataArrayOfNumbers, () => {
-  it('should return true if its array of numbers', () => {
-    const result = checkIsDataArrayOfNumbers([1, 10, 50, 40])
-
-    expect(result).toEqual(true)
-  })
-
-  it('should return false if its array of objects', () => {
-    const result = checkIsDataArrayOfNumbers([{ value: 1 }, { value: 2 }])
-
-    expect(result).toEqual(false)
   })
 })
 
