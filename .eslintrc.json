@@ -17,7 +17,8 @@
     },
     "plugins": [
         "react",
-        "jest-react"
+        "jest-react",
+        "simple-import-sort"
     ],
     "rules": {
         "@typescript-eslint/consistent-type-definitions": ["error", "type"],
@@ -28,13 +29,8 @@
         "no-multiple-empty-lines": ["error", { "max": 1 }],
         "no-trailing-spaces": "error",
         "semi": ["error", "never"],
-        "sort-imports": ["error", {
-          "ignoreCase": false,
-          "ignoreDeclarationSort": false,
-          "ignoreMemberSort": false,
-          "memberSyntaxSortOrder": ["none", "single", "all", "multiple"],
-          "allowSeparatedGroups": true
-        }],
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
         "space-before-blocks": "error"
       }
 }

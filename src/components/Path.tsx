@@ -1,17 +1,17 @@
 import React from 'react'
 
-import { PathType, PieData } from '../types'
+import { PathType, PieSlice } from '../types'
 import {
-  calculateNewPosition,
   createEndWallPath,
   createInnerPath,
   createOuterPath,
   createStartWallPath,
-  createTopPath
+  createTopPath,
+  getNewPosition
 } from '../utils'
 
 type Props = {
-  data: PieData
+  data: PieSlice
   pathVariables: {
     height: number
     ir: number
@@ -57,16 +57,16 @@ export const Path =
 
     const createPath = (): string => {
       switch (type) {
-        case PathType.End:
-          return createEndWallPath(data, rx, ry, height, ir)
-        case PathType.Inner:
-          return createInnerPath(data, rx, ry, height, ir)
-        case PathType.Outer:
-          return createOuterPath(data, rx, ry, height)
-        case PathType.Start:
-          return createStartWallPath(data, rx, ry, height, ir)
-        case PathType.Top:
-          return createTopPath(data, rx, ry, ir)
+        case 'end':
+          return createEndWallPath(data.endAngle, rx, ry, height, ir)
+        case 'inner':
+          return createInnerPath(data.startAngle, data.endAngle, rx, ry, height, ir)
+        case 'outer':
+          return createOuterPath(data.startAngle, data.endAngle, rx, ry, height)
+        case 'start':
+          return createStartWallPath(data.startAngle, data.endAngle, rx, ry, height, ir)
+        case 'top':
+          return createTopPath(data.startAngle, data.endAngle, rx, ry, ir)
         default:
           throw Error('No such path type')
       }
@@ -81,7 +81,7 @@ export const Path =
     `${tooltipShowPercentage ? (data.percentageValue * 100).toFixed(2) + '%' : ''}`
 
     const transformation = data.moved
-      ? `translate(${calculateNewPosition(data, rx, ry, moveDistance).join(',')})`
+      ? `translate(${getNewPosition(data.startAngle, data.endAngle, rx, ry, moveDistance).join(',')})`
       : 'translate(0,0)'
 
     return (

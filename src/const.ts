@@ -1,6 +1,6 @@
 import { PieConfig } from './types'
 
-export const DEFAULT_CONFIG: PieConfig = {
+export const defaultConfig: PieConfig = {
   angle: 40,
   height: 40,
   ir: 0.6,
@@ -15,7 +15,9 @@ export const DEFAULT_CONFIG: PieConfig = {
   tooltipShowValue: true
 }
 
-export const DEFAULT_COLORS = [
+export const pi = Math.PI
+
+export const defaultColors = [
   'limegreen',
   'mediumvioletred',
   'mediumpurple',
