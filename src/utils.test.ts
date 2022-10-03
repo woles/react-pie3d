@@ -93,7 +93,7 @@ describe(getMiddleAngle, () => {
 
 describe(getNewPosition, () => {
   it('should return new position', () => {
-    const result = getNewPosition(0, pi / 2, 10, 50, 5)
+    const result = getNewPosition(pi / 4, 10, 50, 5)
 
     expect(result).toEqual([35.35533905932738, 176.77669529663686])
   })

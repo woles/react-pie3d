@@ -81,7 +81,7 @@ export const Path =
     `${tooltipShowPercentage ? (data.percentageValue * 100).toFixed(2) + '%' : ''}`
 
     const transformation = data.moved
-      ? `translate(${getNewPosition(data.startAngle, data.endAngle, rx, ry, moveDistance).join(',')})`
+      ? `translate(${getNewPosition(data.middleAngle, rx, ry, moveDistance).join(',')})`
       : 'translate(0,0)'
 
     return (

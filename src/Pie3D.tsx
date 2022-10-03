@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 
+import { Label } from './components/Label'
 import { Path } from './components/Path'
 import { defaultConfig, pi } from './const'
 import { Config, Data, PieConfig, UserData } from './types'
-import { checkIsDataArrayOfNumbers, mapData, mapRowData } from './utils'
+import { checkIsDataArrayOfNumbers, checkIsUserData, mapData, mapRowData } from './utils'
 
 const styles = {
   height: '100%',
@@ -26,6 +27,12 @@ export const Pie3D: React.ElementType = ({ config, data }: Props) => {
   const [rx, setRx] = useState(0)
   const [mappedData, setMappedData] =
     useState(checkIsDataArrayOfNumbers(data) ? mapData(mapRowData(data as number[])) : mapData(data as UserData[]))
+
+  if (!checkIsDataArrayOfNumbers(data)) {
+    if (!checkIsUserData(data)) {
+      throw new Error('Wrong data format')
+    }
+  }
 
   const pieConfig: PieConfig = { ...defaultConfig, ...config }
 
@@ -55,8 +62,15 @@ export const Pie3D: React.ElementType = ({ config, data }: Props) => {
     ...pieConfig
   }
 
+  // eslint-disable-next-line no-console
+  console.log(mappedData)
+
   const mappedTopAndLabelElements = mappedData.map((item, index) =>
-    <Path data={item} key={index} pathVariables={pathVariables} type={'top'} />)
+    <g key={index}>
+      <Label data={item} pathVariables={pathVariables} chartHight={height} chartWidth={width} />
+      <Path data={item} pathVariables={pathVariables} type={'top'} />
+    </g>
+  )
 
   const mappedP1Elements = mappedData.map((item, index) => rx > 0 && item.endAngle < pi / 2 && (
     <g key={index}>

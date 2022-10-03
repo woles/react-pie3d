@@ -21,10 +21,33 @@ export const createInnerPath =
     `0 0 0 ${sx} ${height + sy} z`
   }
 
+const distance = 40
+
+const getDirection = (angle: number): [number, number] => {
+  if (angle >= 0 && angle < pi / 2) {
+    return [distance, distance]
+  }
+  if (angle >= pi / 2 && angle < pi) {
+    return [-distance, distance]
+  }
+  if (angle >= pi && angle < 4 / 3 * pi) {
+    return [-distance, -distance]
+  }
+  return [distance, -distance]
+}
+
+export const createLabelPath = (middleAngle: number, rx: number, ry: number, height: number):
+string => {
+  const direction = getDirection(middleAngle)
+  const sx = rx * Math.cos(middleAngle)
+  const sy = ry * Math.sin(middleAngle)
+  return `M ${sx} ${sy + height / 2} L ${sx + direction[0]} ${sy + direction[1]} l ${direction[0]} 0`
+}
+
 export const createOuterPath =
 (startAngle: number, endAngle: number, rx: number, ry: number, hight: number): string => {
-  const outerStartAngle = (startAngle > Math.PI ? Math.PI : startAngle)
-  const outerEndAngle = (endAngle > Math.PI ? Math.PI : endAngle)
+  const outerStartAngle = (startAngle > pi ? pi : startAngle)
+  const outerEndAngle = (endAngle > pi ? pi : endAngle)
   const sx = rx * Math.cos(outerStartAngle)
   const sy = ry * Math.sin(outerStartAngle)
   const ex = rx * Math.cos(outerEndAngle)
@@ -59,10 +82,8 @@ export const createTopPath = (startAngle: number, endAngle: number, rx: number, 
 export const getMiddleAngle = (startAngle: number, endAngle: number): number =>
   startAngle + (endAngle - startAngle) / 2
 
-export const getNewPosition = (startAngle: number, endAngle: number, rx: number, ry: number, moveDistance: number):
+export const getNewPosition = (middleAngle: number, rx: number, ry: number, moveDistance: number):
 [number, number] => {
-  const middleAngle = getMiddleAngle(startAngle, endAngle)
-
   return [
     moveDistance * rx * Math.cos(middleAngle > Math.PI ? middleAngle : -middleAngle),
     moveDistance * ry * Math.sin(middleAngle)
@@ -96,19 +117,27 @@ export const mapData = (data: UserData[]): PieSlices => {
     typeof item === 'number' ? accumulator + item : accumulator + item.value, 0)
 
   return data.reduce((accumulator: PieSlices, item: UserData, index: number) => {
-    const angle = item.value / sum * 2 * Math.PI
+    const angle = item.value / sum * 2 * pi
     const previousValue = accumulator[index - 1]
+    const startAngle = previousValue !== undefined ? previousValue.endAngle : 0
+    const endAngle = previousValue !== undefined ? previousValue.endAngle + angle : angle
+    const middleAngle = getMiddleAngle(startAngle, endAngle)
+    const isRight = middleAngle >= 4 / 3 * pi || (middleAngle >= 0 && middleAngle < 4 / 3 * pi)
 
     return [
       ...accumulator,
       {
         color: item.color ?? defaultColors[index % defaultColors.length],
-        endAngle: previousValue !== undefined ? previousValue.endAngle + angle : angle,
+        endAngle,
         index,
         label: item.label,
+        leftIndex: previousValue !== undefined ? previousValue.leftIndex + (!isRight ? 1 : 0) : -1,
+        isRight,
+        rightIndex: previousValue !== undefined ? previousValue.rightIndex + (isRight ? 1 : -1) : 0,
+        middleAngle,
         moved: false,
         percentageValue: item.value / sum,
-        startAngle: previousValue !== undefined ? previousValue.endAngle : 0,
+        startAngle,
         value: item.value
       }
     ]

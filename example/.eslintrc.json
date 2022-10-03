@@ -1,0 +1,18 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "ignorePatterns": ["!**/*"],
+    "extends": [
+        "../.eslintrc.json"
+    ],
+    "overrides": [  
+        {
+            "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+            "rules": {}
+        }
+    ],
+    "plugins": [],
+    "rules": {}
+}

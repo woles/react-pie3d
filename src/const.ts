@@ -1,8 +1,8 @@
 import { PieConfig } from './types'
 
 export const defaultConfig: PieConfig = {
-  angle: 40,
-  height: 40,
+  angle: 80,
+  height: 20,
   ir: 0.6,
   moveDistance: 0.2,
   onClick: (index) => null,
