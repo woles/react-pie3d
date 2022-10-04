@@ -45,9 +45,6 @@ export type PieSlice = {
   percentageValue: number
   startAngle: number
   value: number
-  leftIndex: number
-  rightIndex: number
-  isRight: boolean
   middleAngle: number
 }
 

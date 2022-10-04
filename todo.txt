@@ -1,0 +1,12 @@
+1) labels
+2) text hight
+3) text trim
+4) utils tests
+5) cypress tests
+6) ui example
+7) darker colors on walls
+8) refactor documentation
+9) add husky
+10) add linter to example
+11) refactor
+12) animations

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { Label } from './components/Label'
+// import { Label } from './components/Label'
 import { Path } from './components/Path'
 import { defaultConfig, pi } from './const'
 import { Config, Data, PieConfig, UserData } from './types'
-import { checkIsDataArrayOfNumbers, checkIsUserData, mapData, mapRowData } from './utils'
+import { checkIsDataArrayOfNumbers, checkIsUserData, createElementPieces, mapData, mapRowData } from './utils'
 
 const styles = {
   height: '100%',
@@ -21,6 +21,8 @@ type Props = {
   data: Data
 }
 
+let render = 0
+
 export const Pie3D: React.ElementType = ({ config, data }: Props) => {
   const [height, setHeight] = useState(0)
   const [width, setWidth] = useState(0)
@@ -34,17 +36,19 @@ export const Pie3D: React.ElementType = ({ config, data }: Props) => {
     }
   }
 
+  render += 1
+
   const pieConfig: PieConfig = { ...defaultConfig, ...config }
 
   const ref = useRef<ReactHTMLDivElement>(null)
 
   useEffect(() => {
-    if (ref.current != null) {
+    if (ref.current !== null) {
       setHeight(ref.current.clientHeight)
       setWidth(ref.current.clientWidth)
-      setRx(height / 2 * pieConfig.size)
     }
-  })
+    setRx(height / 2 * pieConfig.size)
+  }, [ref.current])
 
   if (!Array.isArray(data)) {
     throw new Error('Prop data should be an array')
@@ -63,37 +67,43 @@ export const Pie3D: React.ElementType = ({ config, data }: Props) => {
   }
 
   // eslint-disable-next-line no-console
-  console.log(mappedData)
+  console.log(render)
+
+  const [p1Elements, p2Elements, p3Elements, p4Elements, exceptionElements] = createElementPieces(mappedData)
 
   const mappedTopAndLabelElements = mappedData.map((item, index) =>
     <g key={index}>
-      <Label data={item} pathVariables={pathVariables} chartHight={height} chartWidth={width} />
+      {/* <Label
+        data={item}
+        pathVariables={pathVariables}
+        distance={height / (isLabelRight(item.middleAngle) ? rightLabelsNumber : leftLabelsNumber) }
+        chartWidth={width} /> */}
       <Path data={item} pathVariables={pathVariables} type={'top'} />
     </g>
   )
 
-  const mappedP1Elements = mappedData.map((item, index) => rx > 0 && item.endAngle < pi / 2 && (
-    <g key={index}>
+  const mappedP1Elements = p1Elements.map((item) => (
+    <g key={item.value}>
       <Path data={item} pathVariables={pathVariables} type="start" />
       <Path data={item} pathVariables={pathVariables} type="end" />
       <Path data={item} pathVariables={pathVariables} type="outer" />
     </g>
   ))
 
-  const mappedP2Elements = mappedData
+  const mappedP2Elements = p2Elements
     .sort((a, b) => b.startAngle - a.startAngle)
-    .map((item, index) => rx > 0 && item.endAngle >= pi / 2 && item.endAngle <= pi && (
-      <g key={index}>
+    .map((item) => (
+      <g key={item.value}>
         <Path data={item} pathVariables={pathVariables} type="end" />
         <Path data={item} pathVariables={pathVariables} type="start" />
         <Path data={item} pathVariables={pathVariables} type="outer" />
       </g>
     ))
 
-  const mappedP3Elements = mappedData
+  const mappedP3Elements = p3Elements
     .sort((a, b) => b.startAngle - a.startAngle)
-    .map((item, index) => rx > 0 && item.endAngle > pi && item.endAngle <= 3 * pi / 2 && (
-      <g key={index}>
+    .map((item) => (
+      <g key={item.value}>
         <Path data={item} pathVariables={pathVariables} type="end" />
         {item.startAngle > pi && <Path data={item} pathVariables={pathVariables} type="start" />}
         <Path data={item} pathVariables={pathVariables} type="inner" />
@@ -102,28 +112,20 @@ export const Pie3D: React.ElementType = ({ config, data }: Props) => {
       </g>
     ))
 
-  const mappedP4Elements = mappedData
+  const mappedP4Elements = p4Elements
     .sort((a, b) => a.startAngle - b.startAngle)
-    .map((item, index) =>
-      rx > 0 && item.endAngle > 3 * pi / 2 && item.startAngle > pi / 2 && (
-        <g key={index}>
+    .map((item) => (
+        <g key={item.value}>
           <Path data={item} pathVariables={pathVariables} type="start" />
           <Path data={item} pathVariables={pathVariables} type="end" />
           <Path data={item} pathVariables={pathVariables} type="inner" />
           {item.startAngle < pi && <Path data={item} pathVariables={pathVariables} type="outer" />}
         </g>
-      ))
+    ))
 
-  const exception1 = mappedData.map((item, index) => rx > 0 &&
-    item.endAngle > 3 * pi / 2 && item.startAngle <= pi / 2 && (
-    <g key={index}>
+  const exception1 = exceptionElements.map((item) => (
+    <g key={item.value}>
       <Path data={item} pathVariables={pathVariables} type="end" />
-    </g>
-  ))
-
-  const exception2 = mappedData.map((item, index) => rx > 0 &&
-    item.endAngle > 3 * pi / 2 && item.startAngle <= pi / 2 && (
-    <g key={index}>
       <Path data={item} pathVariables={pathVariables} type="start" />
       <Path data={item} pathVariables={pathVariables} type="inner" />
       {item.startAngle < pi && <Path data={item} pathVariables={pathVariables} type="outer" />}
@@ -138,7 +140,6 @@ export const Pie3D: React.ElementType = ({ config, data }: Props) => {
         {mappedP1Elements}
         {mappedP3Elements}
         {mappedP2Elements}
-        {exception2}
         {mappedTopAndLabelElements}
       </g>
     </svg>

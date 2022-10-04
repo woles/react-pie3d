@@ -1,5 +1,5 @@
 import { defaultColors, pi } from './const'
-import { PieSlices, UserData } from './types'
+import { PieSlice, PieSlices, UserData } from './types'
 
 export const createEndWallPath = (endAngle: number, rx: number, ry: number, hight: number, ir: number): string => {
   const ex = rx * Math.cos(endAngle)
@@ -21,28 +21,35 @@ export const createInnerPath =
     `0 0 0 ${sx} ${height + sy} z`
   }
 
-const distance = 40
+// const getYLabel = (middleAngle: number, distance: number, index: number):
+// number => {
+//   // eslint-disable-next-line no-console
+//   console.log(distance)
+//   if (middleAngle >= 0 && middleAngle < pi / 2) {
+//     return (index + 1) * distance
+//   }
 
-const getDirection = (angle: number): [number, number] => {
-  if (angle >= 0 && angle < pi / 2) {
-    return [distance, distance]
-  }
-  if (angle >= pi / 2 && angle < pi) {
-    return [-distance, distance]
-  }
-  if (angle >= pi && angle < 4 / 3 * pi) {
-    return [-distance, -distance]
-  }
-  return [distance, -distance]
-}
+//   if (middleAngle >= pi / 2 && middleAngle < pi) {
+//     return (maxIndex - index) * distance - chartHight / 2
+//   }
 
-export const createLabelPath = (middleAngle: number, rx: number, ry: number, height: number):
-string => {
-  const direction = getDirection(middleAngle)
-  const sx = rx * Math.cos(middleAngle)
-  const sy = ry * Math.sin(middleAngle)
-  return `M ${sx} ${sy + height / 2} L ${sx + direction[0]} ${sy + direction[1]} l ${direction[0]} 0`
-}
+//   if (middleAngle >= pi && middleAngle < 3 / 2 * pi) {
+//     return (maxIndex - index - 1) * distance - chartHight / 2
+//   }
+
+//   return -chartHight + (index + 0.5) * distance
+// }
+
+// export const createLabelPath = (
+//   middleAngle: number, rx: number, ry: number, height: number, chartHight: number):
+// string => {
+//   const sx = rx * Math.cos(middleAngle)
+//   const sy = ry * Math.sin(middleAngle)
+//   const move = 30
+
+//   return `M ${sx} ${sy + height / 2} L ${sx + (isLabelRight ? move : -move)}` +
+//     ` ${getYLabel(middleAngle, chartHight, index, maxIndex)} l ${isLabelRight ? distance : -distance} 0`
+// }
 
 export const createOuterPath =
 (startAngle: number, endAngle: number, rx: number, ry: number, hight: number): string => {
@@ -118,11 +125,10 @@ export const mapData = (data: UserData[]): PieSlices => {
 
   return data.reduce((accumulator: PieSlices, item: UserData, index: number) => {
     const angle = item.value / sum * 2 * pi
-    const previousValue = accumulator[index - 1]
+    const previousValue: undefined | PieSlice = accumulator[index - 1]
     const startAngle = previousValue !== undefined ? previousValue.endAngle : 0
     const endAngle = previousValue !== undefined ? previousValue.endAngle + angle : angle
     const middleAngle = getMiddleAngle(startAngle, endAngle)
-    const isRight = middleAngle >= 4 / 3 * pi || (middleAngle >= 0 && middleAngle < 4 / 3 * pi)
 
     return [
       ...accumulator,
@@ -131,9 +137,6 @@ export const mapData = (data: UserData[]): PieSlices => {
         endAngle,
         index,
         label: item.label,
-        leftIndex: previousValue !== undefined ? previousValue.leftIndex + (!isRight ? 1 : 0) : -1,
-        isRight,
-        rightIndex: previousValue !== undefined ? previousValue.rightIndex + (isRight ? 1 : -1) : 0,
         middleAngle,
         moved: false,
         percentageValue: item.value / sum,
@@ -146,3 +149,27 @@ export const mapData = (data: UserData[]): PieSlices => {
 
 export const moveElement = (startAngle: number, mappedData: PieSlices): PieSlices => mappedData.map((element) =>
   element.startAngle === startAngle ? { ...element, moved: !element.moved } : element)
+
+export const createElementPieces = (data: PieSlices): [PieSlices, PieSlices, PieSlices, PieSlices, PieSlices] => {
+  const p1Elements = []
+  const p2Elements = []
+  const p3Elements = []
+  const p4Elements = []
+  const exceptionElements = []
+
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].endAngle < pi / 2) {
+      p1Elements.push(data[i])
+    } else if (data[i].endAngle >= pi / 2 && data[i].endAngle <= pi) {
+      p2Elements.push(data[i])
+    } else if (data[i].endAngle > pi && data[i].endAngle <= 3 / 2 * pi) {
+      p3Elements.push(data[i])
+    } else if (data[i].endAngle > 3 / 2 * pi && data[i].startAngle > pi / 2) {
+      p4Elements.push(data[i])
+    } else if (data[i].endAngle > 3 / 2 * pi && data[i].startAngle <= pi / 2) {
+      exceptionElements.push(data[i])
+    }
+  }
+
+  return [p1Elements, p2Elements, p3Elements, p4Elements, exceptionElements]
+}
