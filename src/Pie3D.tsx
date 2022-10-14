@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-// import { Label } from './components/Label'
+import { Label } from './components/Label'
 import { Path } from './components/Path'
 import { defaultConfig, pi } from './const'
 import { Config, Data, PieConfig, UserData } from './types'
@@ -17,13 +17,11 @@ type ReactHTMLDivElement = {
 }
 
 type Props = {
-  config: Config
+  config?: Config
   data: Data
 }
 
-let render = 0
-
-export const Pie3D: React.ElementType = ({ config, data }: Props) => {
+export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
   const [height, setHeight] = useState(0)
   const [width, setWidth] = useState(0)
   const [rx, setRx] = useState(0)
@@ -35,8 +33,6 @@ export const Pie3D: React.ElementType = ({ config, data }: Props) => {
       throw new Error('Wrong data format')
     }
   }
-
-  render += 1
 
   const pieConfig: PieConfig = { ...defaultConfig, ...config }
 
@@ -66,18 +62,10 @@ export const Pie3D: React.ElementType = ({ config, data }: Props) => {
     ...pieConfig
   }
 
-  // eslint-disable-next-line no-console
-  console.log(render)
-
   const [p1Elements, p2Elements, p3Elements, p4Elements, exceptionElements] = createElementPieces(mappedData)
 
   const mappedTopAndLabelElements = mappedData.map((item, index) =>
     <g key={index}>
-      {/* <Label
-        data={item}
-        pathVariables={pathVariables}
-        distance={height / (isLabelRight(item.middleAngle) ? rightLabelsNumber : leftLabelsNumber) }
-        chartWidth={width} /> */}
       <Path data={item} pathVariables={pathVariables} type={'top'} />
     </g>
   )
@@ -87,6 +75,12 @@ export const Pie3D: React.ElementType = ({ config, data }: Props) => {
       <Path data={item} pathVariables={pathVariables} type="start" />
       <Path data={item} pathVariables={pathVariables} type="end" />
       <Path data={item} pathVariables={pathVariables} type="outer" />
+      <Label
+        data={item}
+        pathVariables={pathVariables}
+        chartWidth={width}
+        isLabelRight={true}
+      />
     </g>
   ))
 
@@ -97,6 +91,12 @@ export const Pie3D: React.ElementType = ({ config, data }: Props) => {
         <Path data={item} pathVariables={pathVariables} type="end" />
         <Path data={item} pathVariables={pathVariables} type="start" />
         <Path data={item} pathVariables={pathVariables} type="outer" />
+        <Label
+            data={item}
+            pathVariables={pathVariables}
+            chartWidth={width}
+            isLabelRight={false}
+          />
       </g>
     ))
 
@@ -109,6 +109,12 @@ export const Pie3D: React.ElementType = ({ config, data }: Props) => {
         <Path data={item} pathVariables={pathVariables} type="inner" />
         {item.startAngle <= pi && <Path data={item} pathVariables={pathVariables} type="start" />}
         {item.startAngle < pi && <Path data={item} pathVariables={pathVariables} type="outer" />}
+        <Label
+            data={item}
+            pathVariables={pathVariables}
+            chartWidth={width}
+            isLabelRight={false}
+          />
       </g>
     ))
 
@@ -120,22 +126,34 @@ export const Pie3D: React.ElementType = ({ config, data }: Props) => {
           <Path data={item} pathVariables={pathVariables} type="end" />
           <Path data={item} pathVariables={pathVariables} type="inner" />
           {item.startAngle < pi && <Path data={item} pathVariables={pathVariables} type="outer" />}
+          <Label
+            data={item}
+            pathVariables={pathVariables}
+            chartWidth={width}
+            isLabelRight={true}
+          />
         </g>
     ))
 
-  const exception1 = exceptionElements.map((item) => (
+  const exception = exceptionElements.map((item) => (
     <g key={item.value}>
       <Path data={item} pathVariables={pathVariables} type="end" />
       <Path data={item} pathVariables={pathVariables} type="start" />
       <Path data={item} pathVariables={pathVariables} type="inner" />
       {item.startAngle < pi && <Path data={item} pathVariables={pathVariables} type="outer" />}
+      <Label
+        data={item}
+        pathVariables={pathVariables}
+        chartWidth={width}
+        isLabelRight={true}
+      />
     </g>
   ))
 
   return (
     <svg ref={ref} style={styles}>
       <g transform={`translate(${width / 2}, ${height / 2})`}>
-        {exception1}
+        {exception}
         {mappedP4Elements}
         {mappedP1Elements}
         {mappedP3Elements}

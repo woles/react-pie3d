@@ -4,7 +4,7 @@ export const defaultConfig: PieConfig = {
   angle: 80,
   height: 20,
   ir: 0.6,
-  moveDistance: 0.2,
+  moveDistance: 0.05,
   onClick: (index) => null,
   showTooltips: true,
   size: 0.8,

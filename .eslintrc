@@ -3,6 +3,7 @@
         "browser": true,
         "es2021": true
     },
+    "root": true,
     "extends": [
         "plugin:react/recommended",
         "standard-with-typescript"

@@ -1,5 +1,5 @@
 import { defaultColors, pi } from './const'
-import { PieSlice, PieSlices, UserData } from './types'
+import { PieSlices, UserData } from './types'
 
 export const createEndWallPath = (endAngle: number, rx: number, ry: number, hight: number, ir: number): string => {
   const ex = rx * Math.cos(endAngle)
@@ -21,35 +21,16 @@ export const createInnerPath =
     `0 0 0 ${sx} ${height + sy} z`
   }
 
-// const getYLabel = (middleAngle: number, distance: number, index: number):
-// number => {
-//   // eslint-disable-next-line no-console
-//   console.log(distance)
-//   if (middleAngle >= 0 && middleAngle < pi / 2) {
-//     return (index + 1) * distance
-//   }
+export const createLabelPath = (
+  middleAngle: number, rx: number, ry: number, height: number, isLabelRight: boolean): string => {
+  const sx = rx * Math.cos(middleAngle)
+  const sy = ry * Math.sin(middleAngle)
 
-//   if (middleAngle >= pi / 2 && middleAngle < pi) {
-//     return (maxIndex - index) * distance - chartHight / 2
-//   }
+  const distance = 15
 
-//   if (middleAngle >= pi && middleAngle < 3 / 2 * pi) {
-//     return (maxIndex - index - 1) * distance - chartHight / 2
-//   }
-
-//   return -chartHight + (index + 0.5) * distance
-// }
-
-// export const createLabelPath = (
-//   middleAngle: number, rx: number, ry: number, height: number, chartHight: number):
-// string => {
-//   const sx = rx * Math.cos(middleAngle)
-//   const sy = ry * Math.sin(middleAngle)
-//   const move = 30
-
-//   return `M ${sx} ${sy + height / 2} L ${sx + (isLabelRight ? move : -move)}` +
-//     ` ${getYLabel(middleAngle, chartHight, index, maxIndex)} l ${isLabelRight ? distance : -distance} 0`
-// }
+  return `M ${sx} ${sy + height / 2} L ${sx + (isLabelRight ? distance : -distance)}` +
+    ` ${sy + (middleAngle < pi ? distance + height / 2 : -distance)} l ${isLabelRight ? distance : -distance} 0`
+}
 
 export const createOuterPath =
 (startAngle: number, endAngle: number, rx: number, ry: number, hight: number): string => {
@@ -125,7 +106,7 @@ export const mapData = (data: UserData[]): PieSlices => {
 
   return data.reduce((accumulator: PieSlices, item: UserData, index: number) => {
     const angle = item.value / sum * 2 * pi
-    const previousValue: undefined | PieSlice = accumulator[index - 1]
+    const previousValue = accumulator[index - 1]
     const startAngle = previousValue !== undefined ? previousValue.endAngle : 0
     const endAngle = previousValue !== undefined ? previousValue.endAngle + angle : angle
     const middleAngle = getMiddleAngle(startAngle, endAngle)
