@@ -16,9 +16,17 @@ export type ActionsMap = {
   addData: number
   updateConfig: ChartContextType['config']
   updateAngle: number
+  updateDataColor: {
+    index: number
+    color: string
+  }
   updateDataValue: {
     index: number
     value: number
+  }
+  updateDataLabel: {
+    index: number
+    label: string
   }
   updateHight: number
   updateIR: number

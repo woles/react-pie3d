@@ -21,7 +21,7 @@ export const ChartContext = React.createContext<AppContext>({
 const newData = (index: number)  => ({
   value: 10,
   color: defaultColors[defaultColors.length % index],
-  label: 'new data'
+  label: 'new fruit'
 })
 
 const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
@@ -45,6 +45,18 @@ const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
           ...state.config,
           angle: payload
         }
+      }
+    }
+    case 'updateDataColor': {
+      return {
+        ...state,
+        data: state.data.map((item, index) => index === payload.index ? { ...item, color: payload.color } : item) 
+      }
+    }
+    case 'updateDataLabel': {
+      return {
+        ...state,
+        data: state.data.map((item, index) => index === payload.index ? { ...item, label: payload.label } : item) 
       }
     }
     case 'updateDataValue': {
