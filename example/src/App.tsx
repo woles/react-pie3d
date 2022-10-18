@@ -1,16 +1,27 @@
 import * as React from 'react'
-import { Pie3D } from 'react-pie3d'
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid'
+
+import { ChartProvider } from './Context'
+import { Chart } from './Components/Chart'
+import { ConfigForm } from './Components/ConfigForm'
+import { DataForm } from './Components/DataForm'
+
 
 function App() {
   return (
-    <div className="App" style={{ width: '100vh', height: '100vh' }}>
+    <ChartProvider>
       <Grid container spacing="2">
         <Grid item xs={6}>
-          <Pie3D data={[10,  10, 20, 30, 40, 60, 10,  10, 20, 30, 40, 60, 10, 10, 20, 30, 40, 60, 10,  10, 20, 30, 40, 60, 10, ]}/>
+          <div style={{ height: '100vh' }}>
+            <Chart />
+          </div>
+        </Grid>
+        <Grid item xs={6}>
+          <ConfigForm />
+          <DataForm />
         </Grid>
       </Grid>
-    </div>
+    </ChartProvider>
   )
 }
 
