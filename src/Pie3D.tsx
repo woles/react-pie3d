@@ -25,8 +25,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
   const [height, setHeight] = useState(0)
   const [width, setWidth] = useState(0)
   const [rx, setRx] = useState(0)
-  const [mappedData, setMappedData] =
-    useState(checkIsDataArrayOfNumbers(data) ? mapData(mapRowData(data as number[])) : mapData(data as UserData[]))
+  const [mappedData, setMappedData] = useState(mapData([]))
 
   if (!checkIsDataArrayOfNumbers(data)) {
     if (!checkIsUserData(data)) {
@@ -39,12 +38,16 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
   const ref = useRef<ReactHTMLDivElement>(null)
 
   useEffect(() => {
+    setMappedData(checkIsDataArrayOfNumbers(data) ? mapData(mapRowData(data as number[])) : mapData(data as UserData[]))
+  }, [data])
+
+  useEffect(() => {
     if (ref.current !== null) {
       setHeight(ref.current.clientHeight)
       setWidth(ref.current.clientWidth)
     }
     setRx(height / 2 * pieConfig.size)
-  }, [ref.current])
+  }, [ref.current, pieConfig])
 
   if (!Array.isArray(data)) {
     throw new Error('Prop data should be an array')
@@ -65,13 +68,13 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
   const [p1Elements, p2Elements, p3Elements, p4Elements, exceptionElements] = createElementPieces(mappedData)
 
   const mappedTopAndLabelElements = mappedData.map((item, index) =>
-    <g key={index}>
+    <g key={item.middleAngle}>
       <Path data={item} pathVariables={pathVariables} type={'top'} />
     </g>
   )
 
-  const mappedP1Elements = p1Elements.map((item) => (
-    <g key={item.value}>
+  const mappedP1Elements = p1Elements.map((item, index) => (
+    <g key={item.middleAngle}>
       <Path data={item} pathVariables={pathVariables} type="start" />
       <Path data={item} pathVariables={pathVariables} type="end" />
       <Path data={item} pathVariables={pathVariables} type="outer" />
@@ -87,7 +90,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
   const mappedP2Elements = p2Elements
     .sort((a, b) => b.startAngle - a.startAngle)
     .map((item) => (
-      <g key={item.value}>
+      <g key={item.middleAngle}>
         <Path data={item} pathVariables={pathVariables} type="end" />
         <Path data={item} pathVariables={pathVariables} type="start" />
         <Path data={item} pathVariables={pathVariables} type="outer" />
@@ -103,7 +106,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
   const mappedP3Elements = p3Elements
     .sort((a, b) => b.startAngle - a.startAngle)
     .map((item) => (
-      <g key={item.value}>
+      <g key={item.middleAngle}>
         <Path data={item} pathVariables={pathVariables} type="end" />
         {item.startAngle > pi && <Path data={item} pathVariables={pathVariables} type="start" />}
         <Path data={item} pathVariables={pathVariables} type="inner" />
@@ -121,7 +124,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
   const mappedP4Elements = p4Elements
     .sort((a, b) => a.startAngle - b.startAngle)
     .map((item) => (
-        <g key={item.value}>
+        <g key={item.middleAngle}>
           <Path data={item} pathVariables={pathVariables} type="start" />
           <Path data={item} pathVariables={pathVariables} type="end" />
           <Path data={item} pathVariables={pathVariables} type="inner" />
@@ -136,7 +139,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
     ))
 
   const exception = exceptionElements.map((item) => (
-    <g key={item.value}>
+    <g key={item.middleAngle}>
       <Path data={item} pathVariables={pathVariables} type="end" />
       <Path data={item} pathVariables={pathVariables} type="start" />
       <Path data={item} pathVariables={pathVariables} type="inner" />
