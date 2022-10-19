@@ -9,6 +9,7 @@ export const defaultConfig: PieConfig = {
   onClick: (index) => null,
   showTooltips: true,
   size: 0.8,
+  showLabels: true,
   stroke: 'white',
   strokeWidth: 1,
   tooltipShowName: true,

@@ -6,6 +6,7 @@ export type Config = {
   onClick?: (index: number) => void
   showTooltips?: boolean
   size?: number
+  showLabels?: boolean
   stroke?: string
   strokeWidth?: number
   tooltipShowName?: boolean
@@ -21,6 +22,7 @@ export type PieConfig = {
   onClick: (index: number) => void
   showTooltips: boolean
   size: number
+  showLabels: boolean
   stroke: string
   strokeWidth: number
   tooltipShowName: boolean

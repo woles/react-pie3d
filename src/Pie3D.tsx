@@ -78,12 +78,13 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
       <Path data={item} pathVariables={pathVariables} type="start" />
       <Path data={item} pathVariables={pathVariables} type="end" />
       <Path data={item} pathVariables={pathVariables} type="outer" />
-      <Label
-        data={item}
-        pathVariables={pathVariables}
-        chartWidth={width}
-        isLabelRight={true}
-      />
+      {config?.showLabels === true && <Label
+          data={item}
+          pathVariables={pathVariables}
+          chartWidth={width}
+          isLabelRight={true}
+        />
+      }
     </g>
   ))
 
@@ -94,12 +95,13 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
         <Path data={item} pathVariables={pathVariables} type="end" />
         <Path data={item} pathVariables={pathVariables} type="start" />
         <Path data={item} pathVariables={pathVariables} type="outer" />
-        <Label
+        {config?.showLabels === true && <Label
             data={item}
             pathVariables={pathVariables}
             chartWidth={width}
             isLabelRight={false}
           />
+        }
       </g>
     ))
 
@@ -112,12 +114,13 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
         <Path data={item} pathVariables={pathVariables} type="inner" />
         {item.startAngle <= pi && <Path data={item} pathVariables={pathVariables} type="start" />}
         {item.startAngle < pi && <Path data={item} pathVariables={pathVariables} type="outer" />}
-        <Label
+        {config?.showLabels === true && <Label
             data={item}
             pathVariables={pathVariables}
             chartWidth={width}
             isLabelRight={false}
           />
+        }
       </g>
     ))
 
@@ -129,12 +132,13 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
           <Path data={item} pathVariables={pathVariables} type="end" />
           <Path data={item} pathVariables={pathVariables} type="inner" />
           {item.startAngle < pi && <Path data={item} pathVariables={pathVariables} type="outer" />}
-          <Label
-            data={item}
-            pathVariables={pathVariables}
-            chartWidth={width}
-            isLabelRight={true}
-          />
+          {config?.showLabels === true && <Label
+              data={item}
+              pathVariables={pathVariables}
+              chartWidth={width}
+              isLabelRight={true}
+            />
+          }
         </g>
     ))
 
@@ -144,12 +148,13 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
       <Path data={item} pathVariables={pathVariables} type="start" />
       <Path data={item} pathVariables={pathVariables} type="inner" />
       {item.startAngle < pi && <Path data={item} pathVariables={pathVariables} type="outer" />}
-      <Label
-        data={item}
-        pathVariables={pathVariables}
-        chartWidth={width}
-        isLabelRight={true}
-      />
+      {config?.showLabels === true && <Label
+          data={item}
+          pathVariables={pathVariables}
+          chartWidth={width}
+          isLabelRight={true}
+        />
+      }
     </g>
   ))
 
