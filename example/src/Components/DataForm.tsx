@@ -15,8 +15,8 @@ export const DataForm = (): JSX.Element => {
     <Card style={{ marginTop: 20 }}>
       <CardContent>
         <form>
-          {data.map(({ value, label }, index) => (
-              <DataFormItem key={index} value={value} label={label} index={index} />
+          {data.map(({ value, label, color }, index) => (
+              <DataFormItem key={index} value={value} color={color} label={label} index={index} />
           ))}
         </form>
         <Box

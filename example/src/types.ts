@@ -28,6 +28,7 @@ export type ActionsMap = {
     index: number
     label: string
   }
+  deleteData: number
   updateHight: number
   updateIR: number
   updateSize: number

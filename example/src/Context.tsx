@@ -18,14 +18,19 @@ export const ChartContext = React.createContext<AppContext>({
   state: defaultState,
 })
 
-const newData = (index: number)  => ({
+const newData = (length: number)  => ({
   value: 10,
-  color: defaultColors[defaultColors.length % index],
+  color: defaultColors[length % defaultColors.length],
   label: 'new fruit'
 })
 
 const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
   switch (type) {
+    case 'deleteData':
+      return {
+        ...state,
+        data: state.data.filter((_, index) => index !== payload)
+      }
     case 'updateConfig': {
       return {
         ...state,
