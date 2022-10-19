@@ -64,7 +64,7 @@ export const Path =
         case 'outer':
           return createOuterPath(data.startAngle, data.endAngle, rx, ry, height)
         case 'start':
-          return createStartWallPath(data.startAngle, data.endAngle, rx, ry, height, ir)
+          return createStartWallPath(data.startAngle, rx, ry, height, ir)
         case 'top':
           return createTopPath(data.startAngle, data.endAngle, rx, ry, ir)
         default:

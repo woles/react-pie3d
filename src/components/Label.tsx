@@ -16,7 +16,7 @@ type Props = {
   }
 }
 
-export const Label = ({ data, isLabelRight, pathVariables: { height, rx, ry, moveDistance } }: Props):
+export const Label = ({ data, isLabelRight, pathVariables: { height, rx, ry } }: Props):
 JSX.Element => (
     <g>
       <path

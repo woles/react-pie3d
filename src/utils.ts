@@ -45,7 +45,7 @@ export const createOuterPath =
 }
 
 export const createStartWallPath =
-(startAngle: number, endAngle: number, rx: number, ry: number, hight: number, ir: number): string => {
+(startAngle: number, rx: number, ry: number, hight: number, ir: number): string => {
   const sx = rx * Math.cos(startAngle)
   const sy = ry * Math.sin(startAngle)
 

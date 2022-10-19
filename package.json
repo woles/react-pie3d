@@ -1,6 +1,6 @@
 {
   "name": "react-pie3d",
-  "version": "2.0.0",
+  "version": "1.1.0",
   "description": "React 3d pie/donut",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

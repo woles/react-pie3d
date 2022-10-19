@@ -55,19 +55,19 @@ const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
     case 'updateDataColor': {
       return {
         ...state,
-        data: state.data.map((item, index) => index === payload.index ? { ...item, color: payload.color } : item) 
+        data: state.data.map((item, index) => index === payload.index ? { ...item, color: payload.color } : item)
       }
     }
     case 'updateDataLabel': {
       return {
         ...state,
-        data: state.data.map((item, index) => index === payload.index ? { ...item, label: payload.label } : item) 
+        data: state.data.map((item, index) => index === payload.index ? { ...item, label: payload.label } : item)
       }
     }
     case 'updateDataValue': {
       return {
         ...state,
-        data: state.data.map((item, index) => index === payload.index ? { ...item, value: payload.value } : item) 
+        data: state.data.map((item, index) => index === payload.index ? { ...item, value: payload.value } : item)
       }
     }
     case 'updateHight': {

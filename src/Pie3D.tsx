@@ -67,13 +67,13 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
 
   const [p1Elements, p2Elements, p3Elements, p4Elements, exceptionElements] = createElementPieces(mappedData)
 
-  const mappedTopAndLabelElements = mappedData.map((item, index) =>
+  const mappedTopAndLabelElements = mappedData.map((item) =>
     <g key={item.middleAngle}>
       <Path data={item} pathVariables={pathVariables} type={'top'} />
     </g>
   )
 
-  const mappedP1Elements = p1Elements.map((item, index) => (
+  const mappedP1Elements = p1Elements.map((item) => (
     <g key={item.middleAngle}>
       <Path data={item} pathVariables={pathVariables} type="start" />
       <Path data={item} pathVariables={pathVariables} type="end" />

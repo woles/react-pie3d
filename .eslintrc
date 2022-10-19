@@ -5,6 +5,7 @@
     },
     "root": true,
     "extends": [
+        "eslint:recommended",
         "plugin:react/recommended",
         "standard-with-typescript"
     ],
@@ -29,9 +30,15 @@
         "no-multi-spaces": "error",
         "no-multiple-empty-lines": ["error", { "max": 1 }],
         "no-trailing-spaces": "error",
+        "no-unused-vars": ["error", { "args": "all" }],
         "semi": ["error", "never"],
         "simple-import-sort/imports": "error",
         "simple-import-sort/exports": "error",
         "space-before-blocks": "error"
-      }
+    },
+    "settings": {
+        "react": {
+            
+        }
+    }
 }

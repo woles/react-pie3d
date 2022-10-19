@@ -5,6 +5,7 @@ export const defaultConfig: PieConfig = {
   height: 20,
   ir: 0.6,
   moveDistance: 0.05,
+  // eslint-disable-next-line no-unused-vars
   onClick: (index) => null,
   showTooltips: true,
   size: 0.8,
