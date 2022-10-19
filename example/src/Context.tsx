@@ -144,6 +144,14 @@ const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
           size: payload
         }
       }
+    case 'updateTextSize':
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          textSize: payload
+        }
+      }
     case 'addData':
       return {
         ...state,

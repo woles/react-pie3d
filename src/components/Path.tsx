@@ -15,6 +15,7 @@ type Props = {
   pathVariables: {
     height: number
     ir: number
+    fixed: number
     moveDistance: number
     moveElement: (startAngle: number) => void
     showTooltips: boolean
@@ -39,6 +40,7 @@ export const Path =
       ry,
       height,
       ir,
+      fixed,
       moveDistance,
       moveElement,
       showTooltips,
@@ -78,7 +80,7 @@ export const Path =
     const tooltipName = tooltipShowName && label !== undefined ? `${label} ` : ''
 
     const tooltipText = `${tooltipName}${tooltipShowValue ? `:\n${data.value}` : ''}` +
-    `${tooltipShowPercentage ? `:\n${(data.percentageValue * 100).toFixed(2)}%` : ''}`
+    `${tooltipShowPercentage ? `:\n${(data.percentageValue * 100).toFixed(fixed)}%` : ''}`
 
     const transformation = data.moved
       ? `translate(${getNewPosition(data.middleAngle, rx, ry, moveDistance).join(',')})`

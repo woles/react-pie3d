@@ -2,6 +2,7 @@ export type Config = {
   angle?: number
   height?: number
   ir?: number
+  fixed?: number
   moveDistance?: number
   onClick?: (index: number) => void
   showTooltips?: boolean
@@ -9,6 +10,7 @@ export type Config = {
   showLabels?: boolean
   stroke?: string
   strokeWidth?: number
+  textSize?: number
   tooltipShowName?: boolean
   tooltipShowPercentage?: boolean
   tooltipShowValue?: boolean
@@ -18,6 +20,7 @@ export type PieConfig = {
   angle: number
   height: number
   ir: number
+  fixed: number
   moveDistance: number
   onClick: (index: number) => void
   showTooltips: boolean
@@ -25,6 +28,7 @@ export type PieConfig = {
   showLabels: boolean
   stroke: string
   strokeWidth: number
+  textSize: number
   tooltipShowName: boolean
   tooltipShowPercentage: boolean
   tooltipShowValue: boolean

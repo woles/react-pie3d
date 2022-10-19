@@ -21,15 +21,47 @@ export const createInnerPath =
     `0 0 0 ${sx} ${height + sy} z`
   }
 
+const isMiddleAngleRight = (angle: number): boolean => {
+  if (angle < pi / 2) {
+    return true
+  }
+  if (angle >= pi / 2 && angle <= 3 * pi / 2) {
+    return false
+  }
+
+  return true
+}
+
+export const getTextWidth = (text: string, size: number): number => {
+  const canvas = document.createElement('canvas')
+  const context = canvas.getContext('2d')
+
+  if (context !== null) {
+    const font = window.getComputedStyle(document.body).font.split('px')[1]
+    context.font = `${size}px${font}`
+
+    return context.measureText(text).width
+  }
+
+  return 0
+}
+
 export const createLabelPath = (
-  middleAngle: number, rx: number, ry: number, height: number, isLabelRight: boolean): string => {
+  middleAngle: number, rx: number, ry: number, height: number, textLength: number, size: number):
+{ path: string, x: number, y: number } => {
   const sx = rx * Math.cos(middleAngle)
   const sy = ry * Math.sin(middleAngle)
+  const isLabelRight = isMiddleAngleRight(middleAngle)
 
   const distance = 15
 
-  return `M ${sx} ${sy + height / 2} L ${sx + (isLabelRight ? distance : -distance)}` +
-    ` ${sy + (middleAngle < pi ? distance + height / 2 : -distance)} l ${isLabelRight ? distance : -distance} 0`
+  return {
+    path: `M ${sx} ${sy + height / 2} L ${sx + (isLabelRight ? distance : -distance)}` +
+    ` ${sy + (middleAngle < pi ? distance + height / 2 : -distance)} l ${isLabelRight ? distance : -distance} 0`,
+    x: sx + (isLabelRight ? distance : -distance) + (isLabelRight ? distance : -distance) +
+      (isLabelRight ? 1 : -textLength - 1),
+    y: sy + (middleAngle < pi ? distance + height / 2 : -distance) + size / 3.3
+  }
 }
 
 export const createOuterPath =
@@ -145,9 +177,9 @@ export const createElementPieces = (data: PieSlices): [PieSlices, PieSlices, Pie
       p2Elements.push(data[i])
     } else if (data[i].endAngle > pi && data[i].endAngle <= 3 / 2 * pi) {
       p3Elements.push(data[i])
-    } else if (data[i].endAngle > 3 / 2 * pi && data[i].startAngle > pi / 2) {
+    } else if (data[i].startAngle > 3 / 2 * pi) {
       p4Elements.push(data[i])
-    } else if (data[i].endAngle > 3 / 2 * pi && data[i].startAngle <= pi / 2) {
+    } else if (data[i].endAngle > 3 / 2 * pi && data[i].startAngle <= 3 * pi / 2) {
       exceptionElements.push(data[i])
     }
   }

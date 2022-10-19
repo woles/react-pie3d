@@ -43,16 +43,16 @@ export const DataFormItem = ({ color, value, label, index }: Props) => {
           />
       </Grid>
       <Grid item xs={4}>
-      <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          minHeight="20"
-        >
-          <HuePicker
-            color={color}
-            onChange={(value) => dispatch({ type: 'updateDataColor', payload: { index, color: value.hex } })}
-          />
+        <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            minHeight="20"
+          >
+            <HuePicker
+              color={color}
+              onChange={(value) => dispatch({ type: 'updateDataColor', payload: { index, color: value.hex } })}
+            />
         </Box>
       </Grid>
       <Grid item xs={1}>

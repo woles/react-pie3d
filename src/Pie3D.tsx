@@ -11,11 +11,6 @@ const styles = {
   width: '100%'
 }
 
-type ReactHTMLDivElement = {
-  clientHeight: number
-  clientWidth: number
-}
-
 type Props = {
   config?: Config
   data: Data
@@ -35,7 +30,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
 
   const pieConfig: PieConfig = { ...defaultConfig, ...config }
 
-  const ref = useRef<ReactHTMLDivElement>(null)
+  const ref = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
     setMappedData(checkIsDataArrayOfNumbers(data) ? mapData(mapRowData(data as number[])) : mapData(data as UserData[]))
@@ -82,7 +77,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
           data={item}
           pathVariables={pathVariables}
           chartWidth={width}
-          isLabelRight={true}
+          textSize={config?.textSize ?? defaultConfig.textSize}
         />
       }
     </g>
@@ -99,7 +94,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
             data={item}
             pathVariables={pathVariables}
             chartWidth={width}
-            isLabelRight={false}
+            textSize={config?.textSize ?? defaultConfig.textSize}
           />
         }
       </g>
@@ -118,7 +113,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
             data={item}
             pathVariables={pathVariables}
             chartWidth={width}
-            isLabelRight={false}
+            textSize={config?.textSize ?? defaultConfig.textSize}
           />
         }
       </g>
@@ -136,7 +131,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
               data={item}
               pathVariables={pathVariables}
               chartWidth={width}
-              isLabelRight={true}
+              textSize={config?.textSize ?? defaultConfig.textSize}
             />
           }
         </g>
@@ -152,7 +147,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
           data={item}
           pathVariables={pathVariables}
           chartWidth={width}
-          isLabelRight={true}
+          textSize={config?.textSize ?? defaultConfig.textSize}
         />
       }
     </g>

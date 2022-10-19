@@ -35,6 +35,7 @@ export type ActionsMap = {
   updateStrokeWidth: number
   updateStrokeColor: string
   updateData: ChartContextType['data']
+  updateTextSize: number
   toggleLabels: undefined
   toggleTooltip: undefined
   toggleTooltipLabel: undefined

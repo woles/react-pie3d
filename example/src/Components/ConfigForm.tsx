@@ -137,6 +137,18 @@ export const ConfigForm = (): JSX.Element => {
                   payload:  Number((event.target as HTMLInputElement).value)
                 })} 
               />
+              <Typography id="font-size-slider" gutterBottom>
+                Font Size ({config?.textSize})
+              </Typography>
+              <Slider 
+                value={config?.textSize} 
+                min={1} 
+                max={50}
+                onChange={(event) => dispatch({
+                  type: 'updateTextSize',
+                  payload:  Number((event.target as HTMLInputElement).value)
+                })} 
+              />
               <Typography id="stroke-color-slider" gutterBottom>
                 Stroke Color
               </Typography>
