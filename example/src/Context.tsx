@@ -31,19 +31,49 @@ const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
         ...state,
         data: state.data.filter((_, index) => index !== payload)
       }
-    case 'updateConfig': {
+    case 'toggleTooltip':
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          showTooltips: !state?.config?.showTooltips
+        }
+      }
+    case 'toggleTooltipLabel':
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          tooltipShowName: !state?.config?.tooltipShowName
+        }
+      }
+    case 'toggleTooltipPercentage':
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          tooltipShowPercentage: !state?.config?.tooltipShowPercentage
+        }
+      }
+    case 'toggleTooltipValue':
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          tooltipShowValue: !state?.config?.tooltipShowValue
+        }
+      }
+    case 'updateConfig': 
       return {
         ...state,
         config: payload
       }
-    }
-    case 'updateData': {
+    case 'updateData': 
       return {
         ...state,
         data: payload
       }
-    }
-    case 'updateAngle': {
+    case 'updateAngle':
       return {
         ...state,
         config: {
@@ -51,26 +81,22 @@ const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
           angle: payload
         }
       }
-    }
-    case 'updateDataColor': {
+    case 'updateDataColor':
       return {
         ...state,
         data: state.data.map((item, index) => index === payload.index ? { ...item, color: payload.color } : item)
       }
-    }
-    case 'updateDataLabel': {
+    case 'updateDataLabel':
       return {
         ...state,
         data: state.data.map((item, index) => index === payload.index ? { ...item, label: payload.label } : item)
       }
-    }
-    case 'updateDataValue': {
+    case 'updateDataValue':
       return {
         ...state,
         data: state.data.map((item, index) => index === payload.index ? { ...item, value: payload.value } : item)
       }
-    }
-    case 'updateHight': {
+    case 'updateHight':
       return {
         ...state,
         config: {
@@ -78,8 +104,7 @@ const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
           height: payload
         }
       }
-    }
-    case 'updateIR': {
+    case 'updateIR':
       return {
         ...state,
         config: {
@@ -87,8 +112,23 @@ const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
           ir: payload
         }
       }
-    }
-    case 'updateSize': {
+    case 'updateStrokeWidth':
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          strokeWidth: payload
+        }
+      }
+    case 'updateStrokeColor':
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          stroke: payload
+        }
+      }
+    case 'updateSize':
       return {
         ...state,
         config: {
@@ -96,16 +136,13 @@ const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
           size: payload
         }
       }
-    }
-    case 'addData': {
+    case 'addData':
       return {
         ...state,
         data: [...state.data, newData(state.data.length)]
       }
-    }
-    default: {
+    default:
       throw new Error(`Unhandled action type`)
-    }
   }
 }
 

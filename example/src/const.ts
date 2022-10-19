@@ -12,7 +12,7 @@ export const defaultConfig: ChartContextType['config'] = {
   strokeWidth: 1,
   tooltipShowName: true,
   tooltipShowPercentage: true,
-  tooltipShowValue: true
+  tooltipShowValue: false
 }
 
 export const defaultData: ChartContextType['data'] = [

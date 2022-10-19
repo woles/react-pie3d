@@ -32,7 +32,13 @@ export type ActionsMap = {
   updateHight: number
   updateIR: number
   updateSize: number
+  updateStrokeWidth: number
+  updateStrokeColor: string
   updateData: ChartContextType['data']
+  toggleTooltip: undefined
+  toggleTooltipLabel: undefined
+  toggleTooltipPercentage: undefined
+  toggleTooltipValue: undefined
 }
   
 export type Actions = {

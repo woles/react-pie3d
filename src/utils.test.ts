@@ -68,7 +68,7 @@ describe(createOuterPath, () => {
 
 describe(createStartWallPath, () => {
   it('should create a start wall path', () => {
-    const result = createStartWallPath(0, pi / 2, 120, 120, 40, 0.8)
+    const result = createStartWallPath(0, 120, 120, 40, 0.8)
 
     expect(result).toEqual('M 96 0 L 96 40 L 120 40 L 120 0 z')
   })

@@ -77,8 +77,8 @@ export const Path =
 
     const tooltipName = tooltipShowName && label !== undefined ? `${label} ` : ''
 
-    const tooltipText = `${tooltipName}${tooltipShowValue ? data.value : ''} ` +
-    `${tooltipShowPercentage ? (data.percentageValue * 100).toFixed(2) + '%' : ''}`
+    const tooltipText = `${tooltipName}${tooltipShowValue ? `:\n${data.value}` : ''}` +
+    `${tooltipShowPercentage ? `:\n${(data.percentageValue * 100).toFixed(2)}%` : ''}`
 
     const transformation = data.moved
       ? `translate(${getNewPosition(data.middleAngle, rx, ry, moveDistance).join(',')})`
