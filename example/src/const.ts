@@ -6,6 +6,7 @@ export const defaultConfig: ChartContextType['config'] = {
   ir: 0.6,
   moveDistance: 0.05,
   onClick: (index) => null,
+  showLabels: true,
   showTooltips: true,
   size: 0.8,
   stroke: 'white',

@@ -31,6 +31,14 @@ const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
         ...state,
         data: state.data.filter((_, index) => index !== payload)
       }
+    case 'toggleLabels':
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          showLabels: !state?.config?.showLabels
+        }
+      }
     case 'toggleTooltip':
       return {
         ...state,

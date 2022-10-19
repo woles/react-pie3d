@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { HuePicker } from 'react-color'
+import { CompactPicker } from 'react-color'
 import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -56,24 +56,59 @@ export const ConfigForm = (): JSX.Element => {
                   payload:  Number((event.target as HTMLInputElement).value)
                 })}
               />
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={config?.showTooltips}
-                    onChange={() => dispatch({ type: 'toggleTooltip', payload: undefined })} name="tooltip"
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={config?.showTooltips}
+                        onChange={() => dispatch({ type: 'toggleTooltip', payload: undefined })} name="tooltip"
+                      />
+                    }
+                    label="Tooltip"
                   />
-                }
-                label="Tooltip"
-              />
-               <FormControlLabel
-                control={
-                  <Switch
-                    checked={config?.tooltipShowName}
-                    onChange={() => dispatch({ type: 'toggleTooltipLabel', payload: undefined })} name="tooltip-label"
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={config?.tooltipShowPercentage}
+                        onChange={() => dispatch({ 
+                          type: 'toggleTooltipPercentage',
+                          payload: undefined })} name="tooltip-percentage"
+                      />
+                    }
+                    label="Tooltip percentage"
                   />
-                }
-                label="Tooltip Label"
-              />
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={config?.showLabels}
+                        onChange={() => dispatch({ type: 'toggleLabels', payload: undefined })} name="labels"
+                      />
+                    }
+                    label="Show Labels"
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={config?.tooltipShowName}
+                        onChange={() => dispatch({ type: 'toggleTooltipLabel', payload: undefined })} name="tooltip-label"
+                      />
+                    }
+                    label="Tooltip Label"
+                  />
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={config?.tooltipShowValue}
+                        onChange={() => dispatch({ type: 'toggleTooltipValue', payload: undefined })} name="tooltip-value"
+                      />
+                    }
+                    label="Tooltip value"
+                  />
+                </Grid>
+              </Grid>
             </Grid>
             <Grid item xs={6}>
               <Typography id="inner-radius-slider" gutterBottom>
@@ -109,33 +144,12 @@ export const ConfigForm = (): JSX.Element => {
                   display="flex"
                   justifyContent="center"
                   alignItems="center"
-                  style={{ height: 35}}
                 >
-                  <HuePicker
+                  <CompactPicker
                     color={config?.stroke}
                     onChange={(value) => dispatch({ type: 'updateStrokeColor', payload: value.hex })}
                   />
               </Box>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={config?.tooltipShowPercentage}
-                    onChange={() => dispatch({ 
-                      type: 'toggleTooltipPercentage',
-                      payload: undefined })} name="tooltip-percentage"
-                  />
-                }
-                label="Tooltip percentage"
-              />
-               <FormControlLabel
-                control={
-                  <Switch
-                    checked={config?.tooltipShowValue}
-                    onChange={() => dispatch({ type: 'toggleTooltipValue', payload: undefined })} name="tooltip-value"
-                  />
-                }
-                label="Tooltip value"
-              />
             </Grid>
           </Grid>
         </form>
