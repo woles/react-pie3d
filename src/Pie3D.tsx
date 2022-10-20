@@ -78,6 +78,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
           pathVariables={pathVariables}
           chartWidth={width}
           textSize={config?.textSize ?? defaultConfig.textSize}
+          showLabelPercentage={config.showLabelPercentage ?? true}
         />
       }
     </g>
@@ -95,6 +96,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
             pathVariables={pathVariables}
             chartWidth={width}
             textSize={config?.textSize ?? defaultConfig.textSize}
+            showLabelPercentage={config.showLabelPercentage ?? true}
           />
         }
       </g>
@@ -114,6 +116,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
             pathVariables={pathVariables}
             chartWidth={width}
             textSize={config?.textSize ?? defaultConfig.textSize}
+            showLabelPercentage={config.showLabelPercentage ?? true}
           />
         }
       </g>
@@ -132,6 +135,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
               pathVariables={pathVariables}
               chartWidth={width}
               textSize={config?.textSize ?? defaultConfig.textSize}
+              showLabelPercentage={config.showLabelPercentage ?? true}
             />
           }
         </g>
@@ -148,6 +152,7 @@ export const Pie3D: React.ElementType<Props> = ({ config, data }: Props) => {
           pathVariables={pathVariables}
           chartWidth={width}
           textSize={config?.textSize ?? defaultConfig.textSize}
+          showLabelPercentage={config.showLabelPercentage ?? true}
         />
       }
     </g>

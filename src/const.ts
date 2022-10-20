@@ -9,6 +9,7 @@ export const defaultConfig: PieConfig = {
   // eslint-disable-next-line no-unused-vars
   onClick: (index) => null,
   showTooltips: true,
+  showLabelPercentage: true,
   size: 0.8,
   showLabels: true,
   stroke: 'white',

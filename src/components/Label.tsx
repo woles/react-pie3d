@@ -7,6 +7,7 @@ type Props = {
   data: PieSlice
   chartWidth: number
   textSize: number
+  showLabelPercentage: boolean
   pathVariables: {
     height: number
     ir: number
@@ -17,10 +18,10 @@ type Props = {
   }
 }
 
-export const Label = ({ data, pathVariables: { height, rx, ry, fixed }, textSize }: Props):
+export const Label = ({ data, pathVariables: { height, rx, ry, fixed }, textSize, showLabelPercentage }: Props):
 JSX.Element => {
   const value = (data.percentageValue * 100).toFixed(fixed)
-  const text = `${data.label ?? ''}(${value}%)`
+  const text = `${data.label ?? ''}${showLabelPercentage ? `(${value}%)` : ''}`
   const { path, x, y } =
     createLabelPath(data.middleAngle, rx, ry, height, getTextWidth(text, textSize), textSize)
 

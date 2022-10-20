@@ -8,6 +8,7 @@ export type Config = {
   showTooltips?: boolean
   size?: number
   showLabels?: boolean
+  showLabelPercentage?: boolean
   stroke?: string
   strokeWidth?: number
   textSize?: number
@@ -26,6 +27,7 @@ export type PieConfig = {
   showTooltips: boolean
   size: number
   showLabels: boolean
+  showLabelPercentage: boolean
   stroke: string
   strokeWidth: number
   textSize: number
