@@ -39,6 +39,14 @@ const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
           showLabels: !state?.config?.showLabels
         }
       }
+    case 'toggleLabelsPercentages':
+      return {
+        ...state,
+        config: {
+          ...state.config,
+          showLabelPercentage: !state?.config?.showLabelPercentage
+        }
+      }
     case 'toggleTooltip':
       return {
         ...state,

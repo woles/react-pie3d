@@ -107,6 +107,15 @@ export const ConfigForm = (): JSX.Element => {
                     }
                     label="Tooltip value"
                   />
+                   <FormControlLabel
+                    control={
+                      <Switch
+                        checked={config?.showLabelPercentage}
+                        onChange={() => dispatch({ type: 'toggleLabelsPercentages', payload: undefined })} name="label-percentage"
+                      />
+                    }
+                    label="Label percentage"
+                  />
                 </Grid>
               </Grid>
             </Grid>

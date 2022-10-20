@@ -9,13 +9,14 @@ export const defaultConfig: ChartContextType['config'] = {
   onClick: (index) => null,
   showLabels: true,
   showTooltips: true,
+  showLabelPercentage: true,
   size: 0.6,
   stroke: 'white',
   strokeWidth: 1,
   textSize: 14,
   tooltipShowName: true,
   tooltipShowPercentage: true,
-  tooltipShowValue: false
+  tooltipShowValue: false,
 }
 
 export const defaultData: ChartContextType['data'] = [

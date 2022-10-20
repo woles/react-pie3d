@@ -37,6 +37,7 @@ export type ActionsMap = {
   updateData: ChartContextType['data']
   updateTextSize: number
   toggleLabels: undefined
+  toggleLabelsPercentages: undefined
   toggleTooltip: undefined
   toggleTooltipLabel: undefined
   toggleTooltipPercentage: undefined
