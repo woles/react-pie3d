@@ -6,10 +6,6 @@ SVG 3D pie / donut chart with tooltips and typescript
 
 [https://woles.github.io/react-pie3d-demo/](https://woles.github.io/react-pie3d-demo/)
 
-## Requirements
-
-    react >= 16.8.0
-
 ## Installation
 
     npm install react-pie3d
@@ -24,7 +20,13 @@ or
 
     <Pie3D config={config} data={data} />
 
-### Data
+How to use the types:
+
+    React.ComponentProps<typeof Pie3D>
+
+## Props:
+
+### Data (data)
 
 Data is an array of two possible types:
 
@@ -40,15 +42,17 @@ Or (`{value: number, label?: string, color?: string}[]`)
       { value: 30, label: 'oranges', color: 'blue' },
     ]
 
-### Config
+### Config (config)
 
 | Name   |      Type      |  Default Value | Description |
 |----------|:-------------:|----------:|------:|
 | angle |  number | 40 | Angle of the chart |
+| fixed | number | 2 | Floating point precision |
 | height |    number   |   40 | Hight of the walls |
 | ir | number |    0.6 | Inner radius in % |
 | moveDistance | number |    0.2 | How far the slice can move in % (0 means no move on click) |
 | onClick | function |    (index: number) => null | custom function on slice click |
+| showLabels | boolean | true | show labels on chart
 | showTooltips | boolean |    true | Show tooltip on slice hover |
 | size | number |    0.8 | Size in % of the container |
 | stroke | string |    '#fff' | Color of the stroke |
