@@ -4,7 +4,9 @@ SVG 3D pie / donut chart with tooltips and typescript
 
 ## Demo
 
-[https://woles.github.io/react-pie3d-demo/](https://woles.github.io/react-pie3d-demo/)
+![chart](https://github.com/woles/react-pie3d/blob/master/img/screen.png)
+
+[https://woles.github.io/react-pie3d/](https://woles.github.io/react-pie3d/)
 
 ## Installation
 
@@ -53,12 +55,14 @@ Or (`{value: number, label?: string, color?: string}[]`)
 | moveDistance | number |    0.2 | How far the slice can move in % (0 means no move on click) |
 | onClick | function |    (index: number) => null | custom function on slice click |
 | showLabels | boolean | true | show labels on chart
+| showLabelPercentage | boolean | true | show percentage value on chart 
 | showTooltips | boolean |    true | Show tooltip on slice hover |
 | size | number |    0.8 | Size in % of the container |
 | stroke | string |    '#fff' | Color of the stroke |
 | strokeWidth | number |    1 | width of stroke in px |
 | tooltipShowName | boolean |    true | show label in tooltip |
 | tooltipShowPercentage | boolean |    true | show percentage value in tooltip |
+| textSize |  number | 12 | size of labels font in pixels |
 | tooltipShowValue | boolean |    true | show value in tooltip|
 
 
