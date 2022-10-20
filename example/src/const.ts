@@ -22,7 +22,7 @@ export const defaultConfig: ChartContextType['config'] = {
 export const defaultData: ChartContextType['data'] = [
   { value: 30, color: '#FF0000',  label: 'apples' },
   { value: 50, color: '#00FF00',  label: 'avocados' },
-  { value: 10, color: '#FFFF00',  label: 'lemons' },
+  { value: 20, color: '#FFFF00',  label: 'lemons' },
   { value: 80, color: '#0000FF',  label: 'oranges' }
 ]
 
