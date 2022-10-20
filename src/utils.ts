@@ -53,7 +53,7 @@ export const createLabelPath = (
   const sy = ry * Math.sin(middleAngle)
   const isLabelRight = isMiddleAngleRight(middleAngle)
 
-  const distance = 15
+  const distance = 20
 
   return {
     path: `M ${sx} ${sy + height / 2} L ${sx + (isLabelRight ? distance : -distance)}` +

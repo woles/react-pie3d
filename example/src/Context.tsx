@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { defaultConfig, defaultData, defaultColors } from './const'
+import { defaultConfig, defaultData, defaultColors, fruits } from './const'
 import { ChartContextType, Actions } from './types'
 
 const defaultState = {
@@ -19,9 +19,9 @@ export const ChartContext = React.createContext<AppContext>({
 })
 
 const newData = (length: number)  => ({
-  value: 10,
+  value: Math.floor(Math.random() * 100),
   color: defaultColors[length % defaultColors.length],
-  label: 'new fruit'
+  label: fruits[length % fruits.length]
 })
 
 const chartReducer = (state: ChartContextType, { payload, type }: Actions) => {
